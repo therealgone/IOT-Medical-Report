@@ -1,0 +1,2 @@
+run :streamlit run "c:/Users/jeeva/OneDrive/Documents/Medical Report GIT/t5_summary_test.py"
+start venv:.\venv\Scripts\activate  

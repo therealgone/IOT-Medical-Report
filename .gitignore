@@ -8,3 +8,7 @@ __pycache__/
 *.ckpt
 *.pt
 *.onnx
+.env
+__pycache__/
+*.pyc
+

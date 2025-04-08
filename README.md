@@ -102,6 +102,7 @@ tzdata==2025.2
 uritemplate==4.1.1
 urllib3==2.3.0
 watchdog==6.0.0
+```
 Installation
 Clone the repository:
 

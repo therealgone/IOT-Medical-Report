@@ -133,36 +133,31 @@ GOOGLE_API_KEY=your_google_api_key_here
 streamlit run app.py
 ```
 
+---
+## Usage 🖥️
 
-Usage 🖥️
-Once the app is running, you can upload a scanned medical report (in formats like PNG, JPG, JPEG) using the file uploader in the Streamlit UI. The app will:
+-**Once the app is running, you can upload a scanned medical report (in formats like PNG, JPG, JPEG) using the file uploader in the Streamlit UI. The app will:
+-**Extract the text from the medical report using OCR.
+-**Provide an easy-to-understand summary of the report, highlighting key medical conditions.
+-**Explain those conditions in simple, non-technical language.
+-**Offer helpful suggestions for next steps based on the extracted content.
+---
 
-Extract the text from the medical report using OCR.
+## Project Status ⚡
+-**Medical Report Summarization: ✅ Completed
+-**X-ray/MRI Scan Analysis: ⏳ Under Development
+---
+## Contributing 🤝
 
-Provide an easy-to-understand summary of the report, highlighting key medical conditions.
-
-Explain those conditions in simple, non-technical language.
-
-Offer helpful suggestions for next steps based on the extracted content.
-
-Project Status ⚡
-Medical Report Summarization: ✅ Completed
-
-X-ray/MRI Scan Analysis: ⏳ Under Development
-
-Contributing 🤝
-We welcome contributions! If you'd like to contribute, please fork the repository and create a pull request. Here are some ways you can contribute:
-
-Fix bugs or improve the codebase.
-
-Enhance the OCR or AI capabilities.
-
-Improve documentation.
-
-License 📄
+-**We welcome contributions! If you'd like to contribute, please fork the repository and create a pull request. Here are some ways you can contribute:
+-**Fix bugs or improve the codebase.
+-**Enhance the OCR or AI capabilities.
+-**Improve documentation.
+---
+## License 📄
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-Created by Jeevan.
+---
+## Created by Jeevan.
 For any queries or suggestions, feel free to open an issue or contact me via email.
 
 

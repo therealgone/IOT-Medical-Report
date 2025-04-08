@@ -1,23 +1,28 @@
-# IOT-Medical-Report
+# IOT-Medical-Report 🏥
 
-## Overview
+
+## Overview 🌟
 **IOT-Medical-Report** is an innovative solution designed to assist in the processing and understanding of medical reports. By using advanced machine learning and AI models, this project extracts text from uploaded medical documents (like scanned reports) and generates easy-to-understand explanations for users. It helps insurance professionals, medical practitioners, and families to interpret complex medical data and decide on the legitimacy of claims.
 
 Currently, the project processes **scanned medical reports** and provides a summary of the extracted text. The support for **X-ray** and **MRI scan** processing is still under development.
 
-## Features
+---
+
+## Features ✨
 - **OCR (Optical Character Recognition)**: Extracts text from scanned medical reports (PDFs, PNG, JPG, JPEG).
 - **Medical Report Summarization**: Automatically summarizes the extracted text in simple terms.
 - **Medical Condition Identification**: Identifies possible medical conditions mentioned in the report.
 - **Simplified Explanations**: Provides an easy-to-understand explanation of medical conditions for users, especially those without a technical background.
 - **Support for Insurance Claims**: Helps insurance professionals verify if medical claims are legitimate based on the content of the reports.
 
-### Future Features (Under Development)
+### Future Features (Under Development) 🚀
 - **X-ray & MRI Scan Analysis**: Integration of machine learning models to analyze X-ray and MRI scans alongside medical records for better insights.
 
-## Requirements
+---
 
-To run this project, you'll need to install the required dependencies. Here’s the `requirements.txt`:
+## Requirements 📋
+
+To run this project, you'll need to install the required dependencies. Here's the `requirements.txt`:
 
 ```plaintext
 altair==5.5.0
@@ -102,34 +107,34 @@ tzdata==2025.2
 uritemplate==4.1.1
 urllib3==2.3.0
 watchdog==6.0.0
+
 ```
-Installation
-Clone the repository:
+## Installation 🛠️
 
-bash
-Copy
+### 1. Clone the repository:
+
+```bash
 git clone https://github.com/your-username/IOT-Medical-Report.git
-Navigate into the project directory:
-
-bash
-Copy
+```
+### 2. Navigate into the project directory:
+```bash
 cd IOT-Medical-Report
-Install the required dependencies:
-
-bash
-Copy
+```
+### 3. Install the required dependencies:
+```bash
 pip install -r requirements.txt
-Set up environment variables: Create a .env file in the root of the project and add your Google API key.
-
-plaintext
-Copy
+```
+### 4. Set up environment variables:
+```Create a .env file in the root of the project and add your Google API key.
 GOOGLE_API_KEY=your_google_api_key_here
-Run the application:
-
-bash
-Copy
+```
+###5. Run the application:
+```bash
 streamlit run app.py
-Usage
+```
+
+
+Usage 🖥️
 Once the app is running, you can upload a scanned medical report (in formats like PNG, JPG, JPEG) using the file uploader in the Streamlit UI. The app will:
 
 Extract the text from the medical report using OCR.
@@ -140,12 +145,12 @@ Explain those conditions in simple, non-technical language.
 
 Offer helpful suggestions for next steps based on the extracted content.
 
-Project Status
-Medical Report Summarization: Completed
+Project Status ⚡
+Medical Report Summarization: ✅ Completed
 
-X-ray/MRI Scan Analysis: Under Development
+X-ray/MRI Scan Analysis: ⏳ Under Development
 
-Contributing
+Contributing 🤝
 We welcome contributions! If you'd like to contribute, please fork the repository and create a pull request. Here are some ways you can contribute:
 
 Fix bugs or improve the codebase.
@@ -154,8 +159,11 @@ Enhance the OCR or AI capabilities.
 
 Improve documentation.
 
-License
+License 📄
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Created by Jeevan.
 For any queries or suggestions, feel free to open an issue or contact me via email.
+
+
+

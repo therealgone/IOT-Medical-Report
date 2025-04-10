@@ -1,2 +1,4 @@
-run :streamlit run "c:/Users/jeeva/OneDrive/Documents/Medical Report GIT/t5_summary_test.py"
-start venv:.\venv\Scripts\activate  
+run :  streamlit run "C:\Users\Jeevan Baabu\Documents\GIT\IOT-Medical-Report\IOT-Medical-Report\t5_summary_test.py"
+start venv:  .\venv\Scripts\activate  
+cd "C:\Users\Jeevan Baabu\Documents\GIT\IOT-Medical-Report\IOT-Medical-Report"
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass

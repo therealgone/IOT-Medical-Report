@@ -4,6 +4,8 @@ import google.generativeai as genai
 import streamlit as st
 from PIL import Image
 import pytesseract
+from pdf2image import convert_from_bytes
+import tempfile
 
 # 📥 Load environment variables
 load_dotenv()
@@ -14,52 +16,66 @@ genai.configure(api_key=GOOGLE_API_KEY)
 model = genai.GenerativeModel(model_name="gemini-1.5-pro-latest")
 
 # 🔧 Tesseract path (Update if different on your system)
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+pytesseract.pytesseract.tesseract_cmd = r"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
 
 # 🖥️ Streamlit UI Setup
 st.set_page_config(page_title="Medical Report Analyzer", layout="wide")
-st.title("🧾 Medical Report Analyzer & Patient-Friendly Explainer")
-st.markdown("Upload a **scanned medical report**, and I’ll extract, summarize, and explain it in simple terms for better understanding.")
+st.title("🧾 Medical Report Analyzer & Insurance Claim Checker")
+st.markdown("Upload **multiple report images or a PDF**. I’ll extract, summarize, and analyze it for possible insurance claim eligibility.")
 
 # 📤 Upload Section
-uploaded_file = st.file_uploader("📎 Upload a report image (PNG, JPG, JPEG)", type=["png", "jpg", "jpeg"])
+uploaded_files = st.file_uploader("📎 Upload report images or a PDF", type=["png", "jpg", "jpeg", "pdf"], accept_multiple_files=True)
 
-if uploaded_file:
-    image = Image.open(uploaded_file)
-    st.image(image, caption="📄 Uploaded Medical Report", use_container_width=True)
+all_text = ""
+images_for_preview = []
 
-    with st.spinner("🔍 Extracting text using OCR..."):
-        extracted_text = pytesseract.image_to_string(image)
-        st.subheader("📝 Extracted Raw Text")
-        st.text_area("OCR Output", extracted_text, height=250)
+if uploaded_files:
+    with st.spinner("📄 Processing uploaded files..."):
+        for file in uploaded_files:
+            if file.type == "application/pdf":
+                images = convert_from_bytes(file.read())
+                for img in images:
+                    text = pytesseract.image_to_string(img)
+                    all_text += text + "\n"
+                    images_for_preview.append(img)
+            else:
+                img = Image.open(file)
+                text = pytesseract.image_to_string(img)
+                all_text += text + "\n"
+                images_for_preview.append(img)
 
-    if extracted_text.strip():
-        with st.spinner("🧠 Analyzing and explaining the report using Gemini..."):
-            prompt = f"""
-You are a kind and smart medical assistant who helps people understand medical reports.
+    st.subheader("🖼️ Preview of Uploaded Pages")
+    st.image(images_for_preview, use_container_width=True)
 
-Here's the extracted text from a scanned medical report:
+    st.subheader("📝 Extracted OCR Text")
+    st.text_area("Extracted Text", all_text.strip(), height=300)
 
-\"\"\"{extracted_text}\"\"\"
+    if all_text.strip():
+        with st.spinner("🧠 Analyzing and summarizing the report using Gemini..."):
+            prompt = f'''
+You are a kind and smart medical assistant working for an Indian health insurance company.
 
-Do the following:
-1. 🔍 Summarize the report in 5 simple lines.
-2. 🧠 Identify the possible medical conditions (if any) mentioned.
-3. 📋 Explain the conditions in simple, easy-to-understand words.
-4. 😷 List common symptoms and causes.
-5. 💊 Suggest what the patient should do next (e.g., tests, treatment, lifestyle).
-6. 🇮🇳 Use a tone that an Indian college student or family can understand clearly.
+The following text was extracted from a scanned medical report:
+"""{all_text}"""
 
-Make sure the answer is:
-- Easy to read
-- Non-technical
-- Supportive and positive in tone
-            """
-
-            response = model.generate_content([prompt, image])
-            explanation = response.text
-
-            st.subheader("🩺 Easy-to-Understand Report Summary")
-            st.info(explanation)
+Your tasks:
+1. 🔍 Summarize the medical report in 5 simple lines.
+2. 🧠 Identify the mentioned medical condition(s).
+3. 📋 Explain the condition(s) in very simple, clear language.
+4. 😷 List possible symptoms and causes.
+5. 💊 Suggest next steps for the patient (tests, treatment, rest, etc).
+6. ✅ Analyze this report from an insurance perspective:
+   - Identify the type of treatment (OPD, surgery, inpatient care, diagnostic, etc)
+   - Is it related to any pre-existing condition?
+   - Is there proof of hospital admission or treatment?
+   - Under what claim category does this report fall?
+7. 🇮🇳 Make your explanation suitable for Indian families and college students.
+8. Check if there is any red flages if the symothes and the docter report are correct or any issue with the report
+Answer in a helpful way like an insurance assistant would.
+Be supportive, clear, and avoid medical jargon.
+'''
+            response = model.generate_content([prompt])
+            st.subheader("📋 Gemini Summary & Insurance Report")
+            st.info(response.text)
     else:
-        st.warning("⚠️ No readable text found in the image.")
+        st.warning("⚠️ No readable text found in the images or PDF.")

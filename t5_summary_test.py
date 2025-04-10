@@ -70,7 +70,9 @@ Your tasks:
    - Is there proof of hospital admission or treatment?
    - Under what claim category does this report fall?
 7. 🇮🇳 Make your explanation suitable for Indian families and college students.
-8. Check if there is any red flages if the symothes and the docter report are correct or any issue with the report
+8. Check if this is caused my family history becuase in some insureace policy they do not cover family history or they are required to be disclosed.
+9. Display the hospital name and address in the report if available.
+10. Check if there is any red flages if the symothes and the docter report are correct or any issue with the report
 Answer in a helpful way like an insurance assistant would.
 Be supportive, clear, and avoid medical jargon.
 '''
